@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="css/core.css">
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/iscroll.js"></script>
+
+<script type="text/javascript" src="js/drag.js"></script>
+<script type="text/javascript" src="js/drop.js"></script>
+<script type="text/javascript" src="js/selectable.js"></script>
+
+<script type="text/javascript" src="js/map.js"></script>
+<script type="text/javascript" src="js/widget_tools.js"></script>
+<script type="text/javascript" src="js/canvas_tools.js"></script>
+<script type="text/javascript" src="js/widget.js"></script>
+<script type="text/javascript" src="js/line.js"></script>
+
+<script type="text/javascript">
+// document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+$(function(){
+
+	var map = oa.maps.Map.createNew($('#oa-map'));
+	var widgetTools = oa.maps.WidgetTools.createNew(map);
+	var canvasTools = oa.maps.CanvasTools.createNew(map);
+
+
+	// 将组件拖拽到画布中
+	$('ul.widget-list li').drop({target : map.getDivCanvas(), callback : function($obj, pos){
+		// 创建一个新的组件( 全局变量，点对象，位置坐标 )
+		pos.type = $obj.attr('widget-type');
+		var widget = oa.maps.Widget.createNew( pos, map);
+	}});
+});
+</script>
+</head>
+<body>
+<!-- 组件列表 begin -->
+<ul class="widget-list">
+	<li class="task" widget-type="task" title="项目"></li>
+	<li class="person" widget-type="person" title="人员"></li>
+	<li class="group" widget-type="group" title="项目组"></li>
+	<li class="arrow" widget-type="arrow" title="arrow"></li>
+</ul>
+<!-- 组件列表 end -->
+
+<div id="oa-map">
+	<!-- 画布 begin -->
+	<div id="div-canvas">
+		<svg xmlns="http://www.w3.org/2000/svg" version="1.1" id="svg-canvas">
+			<defs>
+				<marker id="markerEndArrow" viewBox="0 0 30 30" refX="10" refY="12.5" markerUnits="strokeWidth" markerWidth="9" markerHeight="30" orient="auto">
+					<path style="stroke-width:1;stroke:black;fill:black;opacity:1" d="M0.3125 0.625 9.3125 12.625 0.3125 24.625 21.3125 12.625 Z" />
+				</marker>
+			</defs>
+		</svg>
+		<div id="widget-tools">
+			<a class="draw-line" href="javascript:void(0)"></a>
+			<a class="edit-text" href="javascript:void(0)"></a>
+		</div>
+	</div>
+	<!-- 画布 end -->
+
+	<!-- 工具栏 begin -->
+	<div id="canvas-tools">
+		<a class="selectable" href="javascript:void(0)">
+			<span></span>
+		</a>
+		<a class="scroll" href="javascript:void(0)"></a>
+		<a class="zoom-in" href="javascript:void(0)"></a>
+		<a class="zoom-out" href="javascript:void(0)"></a>
+	</div>
+	<!-- 工具栏 end -->
+</div>
+</body>
+</html>

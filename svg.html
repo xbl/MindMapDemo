@@ -1,0 +1,100 @@
+<html>
+<head>
+<meta charset="utf-8">
+<style type="text/css">
+body{ margin:0; padding: 0; }
+#svg-canvas{ }
+</style>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" id="svg-canvas">
+	<!-- 
+	画圆：
+	cx 表示圆心距离左侧的长度
+	cy 表示圆心距离顶部长度
+	r 表示半径
+	stroke 表示边框颜色
+	stroke-width 边框宽度
+	fill 表示填充的颜色
+	-->
+	<circle cx="41" cy="41" r="40" stroke="#000" stroke-width="1" fill="#f09" />
+	<!--
+	画矩形：
+	x 表示在x轴的位置
+	y 表示在y轴的位置
+	rx 、ry 表示圆角的弧度
+	也可以使用style 控制边框、填充颜色透明度等。
+	-->
+	<rect x="100" y="0" rx="5" ry="5" width="150" height="150" style="fill:blue; stroke:pink; stroke-width:5; fill-opacity:0.1; stroke-opacity:0.9">
+		<set attributeName="fill" from="lightgrey" to="red" begin="mouseover" end="mouseout"/>
+	</rect>
+	<!--
+	画矩形：
+	rx 表示 x 轴上的半径
+	ry 表示 y 轴上的半径
+	-->
+	<ellipse cx="300" cy="150" rx="100" ry="150" style="fill:yellow; stroke:purple; stroke-width:2"/>
+	<!--
+	画线：
+	x1、y1 分别表示x、y轴的起始顶点
+	x2、y2 分别表示x、y轴的终点
+	-->
+	<line x1="100" y1="100" x2="200" y2="300" style="stroke:rgb(255,0,0); stroke-width:2"/>
+	<!--
+	画多边形：
+	points 定义多个点，一个点分别用x,y表示，点与点之间使用空格隔开
+	-->
+	<polygon points="100,500 100,190 160,210 " style="fill:lime;stroke:purple;stroke-width:1"/>
+	<!--
+	画多段线：
+	points 定义多个点，一个点分别用x,y表示，点与点之间使用空格隔开
+	-->
+	<polyline points="20,20 40,25 60,40 80,120 120,140 200,180" style="fill:none;stroke:black;stroke-width:3" />
+	<!--
+	画路径：
+	M = moveto
+	L = lineto
+	H = horizontal lineto
+	V = vertical lineto
+	C = curveto
+	S = smooth curveto
+	Q = quadratic Bézier curve
+	T = smooth quadratic Bézier curveto
+	A = elliptical Arc
+	Z = closepath
+	上面的例子定义了一条路径，它开始于位置 250 150，到达位置 150 350，然后从那里开始到 350 350，最后在 250 150 关闭路径
+	-->
+	<path d="M150 0 L75 200 L225 200 Z" fill="#fff"  stroke="#000" stroke-width="1"  />
+	<!--
+	画路径：
+	M 貌似可以控制 该路径的位置
+	q 是控制
+	-->
+	<path d="M 100 200 q 100 -100 300 0" stroke="blue" stroke-width="5" fill="none" />
+	<!--
+	写文字
+	transform 旋转
+	-->
+	<text x="200" y="15" fill="red" transform="rotate(30 20,40)">I love SVG</text>
+
+	<defs>
+	<marker id="markerEndArrow" viewBox="0 0 30 30" refX="10" refY="12.5" markerUnits="strokeWidth" markerWidth="9" markerHeight="30" orient="auto">
+		<path style="stroke-width:1;stroke:black;fill:black;opacity:1" d="M0.3125 0.625 9.3125 12.625 0.3125 24.625 21.3125 12.625 Z" />
+	</marker>
+	</defs>
+
+	<marker id="idArrow"
+	viewBox="0 0 20 20" refX="0" refY="10" 
+	markerUnits="strokeWidth" markerWidth="9" markerHeight="30"
+	orient="auto">
+	<path d="M 0 0 L 20 10 L 0 20 z" fill="purple" stroke="black"/>
+	</marker>
+
+	<line style="marker-end:url(#idArrow);stroke-width:5;stroke:brown;fill:none;" x1="325" x2="660" y1="535" y2="200"/>
+	<line style="marker-end:url(#markerEndArrow);stroke-width:2;stroke:brown;fill:none;" x1="125" x2="560" y1="435" y2="100"/>
+	<line x1="10" y1="10" x2="100" y2="10" style="stroke-dasharray: 9, 5; stroke: black; stroke-width: 2;" />
+</svg> 
+</body>
+</html>
