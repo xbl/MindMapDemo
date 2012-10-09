@@ -40,4 +40,4 @@ a{ display: inline-block; }
 .widget-list .arrow{ background-image: url('../images/arrow.png'); }
 .widget-list .group{ background-image: url('../images/group.png'); }
 
-.selectable-box{ border: blue dotted 1px; position: absolute; z-index: 1; background: #4e86e9; opacity: 0.4; }
+.selectable-box{ border: blue dotted 1px; position: absolute; z-index: 1; background: rgba(78, 134, 233, 0.4); }
